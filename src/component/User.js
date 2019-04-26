@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import List from './UserList'
 import Axios from "../util/Axios";
+import UserList from "./UserList";
 
 
 
@@ -164,7 +164,7 @@ class User extends Component {
     render() {
         return (
             <div>
-                <List users={this.state.users} isLoading={this.state.isLoading}/>
+                <UserList users={this.state.users} isLoading={this.state.isLoading}/>
             </div>
 
         );

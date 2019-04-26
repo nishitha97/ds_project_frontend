@@ -8,6 +8,9 @@ import * as serviceWorker from './serviceWorker';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Payment from "./component/Payment";
 import Ticket from "./component/Ticket";
+import CreateNewUser from "./component/CreateNewUser";
+import BookTrain from "./component/BookTrain";
+import CreateNewPayment from "./component/CreateNewPayment";
 
 
 
@@ -16,20 +19,37 @@ const routing = (
         <div>
             <ul>
                 <li >
-                    <Link to="/">User </Link>
+                    <Link to="/">View Users |</Link>
 
-                    <Link to="/payment">Payment </Link>
+                    <Link to="/payment">View Payments |</Link>
 
-                    <Link to="/ticket">Ticket </Link>
+                    <Link to="/ticket">View Tickets </Link>
 
                     <Link style={{marginLeft:1100}}to="/login">Login </Link>
                 </li>
             </ul>
 
+            <ul>
+                <li >
+                    <Link to="/user">Sign up</Link>
+                </li>
+                <li >
+                    <Link to="/book">Book Train</Link>
+                </li>
+                <li >
+                    <Link to="/makePayment">Make Payment</Link>
+                </li>
+
+            </ul>
+
+
             <Route exact path="/" component={User}/>
             <Route path="/login" component={Login} />
             <Route path="/payment" component={Payment} />
             <Route path="/ticket" component={Ticket} />
+            <Route path="/user" component={CreateNewUser} />
+            <Route path="/book" component={BookTrain} />
+            <Route path="/makePayment" component={CreateNewPayment} />
         </div>
     </Router>
 )

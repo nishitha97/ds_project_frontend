@@ -1,21 +1,24 @@
 import React, {Component} from 'react';
-import ListItem from './UserListItem';
+import UserListItem from "./UserListItem";
 
 
-class List extends Component {
+
+class UserList extends Component {
     constructor(props) {
         super(props);
         this.state={
-            users:this.props.users
-        }
+            data:this.props.users
 
+        }
+        console.log(this.state.data)
     }
 
 
     delete = (id) => {
         this.setState(prevState => ({
-            users: prevState.users.filter(el => el != id)
+            data: prevState.data.filter(el => el !== id)
         }));
+        console.log(id);
     }
 
 
@@ -30,7 +33,7 @@ class List extends Component {
                         <th>Username</th>
                         <th>Email</th>
                     </tr>
-                <ListItem users={this.props.users} isLoading={this.props.isLoading} delete={this.delete}/>
+                <UserListItem users={this.props.users} isLoading={this.props.isLoading} delete={this.delete}/>
                     </tbody>
                 </table>
             </div>
@@ -41,4 +44,4 @@ class List extends Component {
 
 
 
-export default List;
+export default UserList;

@@ -20,12 +20,14 @@ class Payment extends Component {
     componentDidMount() {
         Axios.get("http://localhost:8081/api/v1/payments")
             .then(response =>
+
                     response.data.map(payment => ({
 
                         creditCardPayment: payment.creditCardPayment,
                         mobilePayment: payment.mobilePayment,
-                        ticketId:payment.ticketId,
-                        userId:payment.userId
+                        bookingId:payment.bookingId,
+                        userId:payment.userId,
+                        paymentStatus:payment.paymentStatus
 
                     }))
                 // {
@@ -35,8 +37,7 @@ class Payment extends Component {
                 //     });
                 // }
 
-            )
-            .then(payments => {
+            ).then(payments => {
                 this.setState({
                     payments:payments,
                     isLoading: false

@@ -1,13 +1,7 @@
 import React, {Component} from 'react';
 
 
-class ListItem extends Component {
-
-    constructor(props){
-        super(props);
-    }
-
-
+class UserListItem extends Component {
 
 
     delete(id) {
@@ -25,7 +19,7 @@ class ListItem extends Component {
 
                           <td>{list.email}</td>
                           <td>{list.name}</td>
-                          <td><button onClick={this.delete.bind(this,list)}>Delete</button></td>
+                          <td><button onClick={this.delete.bind(this,index)}>Delete</button></td>
                       </tr>
 
                 );
@@ -40,4 +34,4 @@ class ListItem extends Component {
     }
 }
 
-export default ListItem;
+export default UserListItem;

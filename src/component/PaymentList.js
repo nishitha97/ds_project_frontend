@@ -28,9 +28,10 @@ class PaymentList extends Component {
                     <tbody>
                     <tr>
                         <th>UserId</th>
-                        <th>TicketId</th>
+                        <th>BookingId</th>
                         <th>CreditCardPayment</th>
                         <th>MobilePayment</th>
+                        <th>PaymentStatus</th>
                     </tr>
                     <PaymentListItem payments={this.props.payments} isLoading={this.props.isLoading}/>
                     </tbody>

@@ -24,9 +24,10 @@ class PaymentListItem extends Component {
                     <tr key={index}>
 
                         <td>{list.userId}</td>
-                        <td>{list.ticketId}</td>
+                        <td>{list.bookingId}</td>
                         <td>{list.creditCardPayment}</td>
                         <td>{list.mobilePayment}</td>
+                        <td>{list.paymentStatus}</td>
 
                     </tr>
 
