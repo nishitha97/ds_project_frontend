@@ -2,18 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9a637ec2-6960-4e37-8c1e-7c35782a491e" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/component/BookTrain.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/component/CreateNewPayment.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/component/CreateNewTicket.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/component/CreateNewUser.js" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/component/Payment.js" afterPath="$PROJECT_DIR$/src/component/Payment.js" />
-      <change beforePath="$PROJECT_DIR$/src/component/PaymentList.js" afterPath="$PROJECT_DIR$/src/component/PaymentList.js" />
-      <change beforePath="$PROJECT_DIR$/src/component/PaymentListItem.js" afterPath="$PROJECT_DIR$/src/component/PaymentListItem.js" />
-      <change beforePath="$PROJECT_DIR$/src/component/User.js" afterPath="$PROJECT_DIR$/src/component/User.js" />
-      <change beforePath="$PROJECT_DIR$/src/component/UserList.js" afterPath="$PROJECT_DIR$/src/component/UserList.js" />
-      <change beforePath="$PROJECT_DIR$/src/component/UserListItem.js" afterPath="$PROJECT_DIR$/src/component/UserListItem.js" />
-      <change beforePath="$PROJECT_DIR$/src/index.js" afterPath="$PROJECT_DIR$/src/index.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -49,7 +38,7 @@
       <file leaf-file-name="PaymentListItem.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/component/PaymentListItem.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
+            <state relative-caret-position="504">
               <caret line="27" column="57" lean-forward="false" selection-start-line="27" selection-start-column="57" selection-end-line="27" selection-end-column="57" />
               <folding />
             </state>
@@ -386,16 +375,15 @@
       <workItem from="1556205780734" duration="220000" />
       <workItem from="1556206040740" duration="828000" />
       <workItem from="1556206885392" duration="11309000" />
-      <workItem from="1556251669707" duration="33516000" />
+      <workItem from="1556251669707" duration="33893000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="47041000" />
+    <option name="totallyTimeSpent" value="47418000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1058" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -406,7 +394,7 @@
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32919955" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2852311" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2852311" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18904404" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -885,7 +873,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/component/PaymentListItem.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
+        <state relative-caret-position="504">
           <caret line="27" column="57" lean-forward="false" selection-start-line="27" selection-start-column="57" selection-end-line="27" selection-end-column="57" />
           <folding />
         </state>
