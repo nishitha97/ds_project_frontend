@@ -24,7 +24,7 @@ class PaymentList extends Component {
 
         return (
             <div>
-                <table className={'table table-hover'} style={{height:100,width:100,align:"center"}}>
+                <table className={'table table-hover'}>
                     <tbody>
                     <tr>
                         <th>UserId</th>

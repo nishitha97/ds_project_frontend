@@ -34,7 +34,7 @@ class CreateNewUser extends Component {
         const {username,password,email,creditCardNo,contactNo} = this.state;
         return (
             <div>
-                <h1 style={{marginLeft:"30%"}}>Sign Up</h1><br/><br/>
+                <h1>Sign Up</h1><br/><br/>
 
             <form onSubmit={this.handleSubmit} style={{marginLeft:"30%"}}>
                 <table className={'table table-hover'} style={{width:400}}>
@@ -45,7 +45,7 @@ class CreateNewUser extends Component {
                 </tr>
                <tr>
                    <td>Password:</td>
-                   <td><input type="text" name="password" value={password} onChange={this.handleChange} /></td>
+                   <td><input type="password" name="password" value={password} onChange={this.handleChange} /></td>
                 </tr>
                   <tr>
                       <td> Email:</td>

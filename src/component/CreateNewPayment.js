@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import Axios from "../util/Axios";
+import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
+import CreateNewTicket from "./CreateNewTicket";
 
 class CreateNewPayment extends Component {
     constructor(props) {
@@ -9,7 +11,12 @@ class CreateNewPayment extends Component {
             creditCardPayment: false,
             mobilePayment:false,
             paymentStatus:'NOT PAID',
-            userId:''
+            userId:'',
+            userIdFrom:this.props.data.userId,
+            selectedTrain:this.props.data.selectedTrain,
+            numberOfTickets:this.props.data.numberOfTickets,
+            to:this.props.data.to,
+            from:this.props.data.from
 
         };
 
@@ -35,11 +42,22 @@ class CreateNewPayment extends Component {
         Axios.post('http://localhost:8081/api/v1/payments',{bookingId,creditCardPayment,mobilePayment,paymentStatus,userId})
             .then(response=>{
                 console.log(response);
+                const url = document.getElementById('ticket');
+                url.click();
             })
+
+
+
     }
 
+
+
+
+
     render() {
-        const {bookingId,userId,mobilePayment,creditCardPayment,paymentStatus} = this.state;
+        const {bookingId,userId,mobilePayment,creditCardPayment,paymentStatus,userIdFrom,selectedTrain,numberOfTickets,to,from} = this.state;
+        /*,selectedTrain,numberOfTickets,to,from}=this.props;*/
+        console.log("dsdsdsdsdsssssssssssssssssss"+selectedTrain)
         return (
             <div>
                 <h1 style={{marginLeft:"30%"}}>Make Payment</h1><br/><br/>
@@ -49,7 +67,7 @@ class CreateNewPayment extends Component {
                         <tbody>
                         <tr>
                             <td> UserId:</td>
-                            <td> <input type="text" name="userId" value={userId} onChange={this.handleChange} /></td>
+                            <td> <input type="text" name="userId" value={this.props.data.userId} onChange={this.handleChange} readOnly /></td>
                         </tr>
                         <tr>
                             <td>BookingId:</td>
@@ -70,7 +88,9 @@ class CreateNewPayment extends Component {
                         </tbody>
                     </table>
                 </form>
-
+                <Router><div><Link id="ticket" to="/booking/payment/ticket"></Link></div><Route path='/booking/payment/ticket' render={(props) => (
+                    <CreateNewTicket {...props} data={{userIdFrom,selectedTrain,numberOfTickets,to,from}}/>
+                )}/></Router>
             </div>
         );
     }

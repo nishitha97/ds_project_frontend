@@ -25,8 +25,8 @@ class PaymentListItem extends Component {
 
                         <td>{list.userId}</td>
                         <td>{list.bookingId}</td>
-                        <td>{list.creditCardPayment}</td>
-                        <td>{list.mobilePayment}</td>
+                        <td>{String(list.creditCardPayment)}</td>
+                        <td>{String(list.mobilePayment)}</td>
                         <td>{list.paymentStatus}</td>
 
                     </tr>

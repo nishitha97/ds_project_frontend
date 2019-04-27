@@ -1,57 +1,80 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './css/Home.css';
-import User from './component/User';
-import Login from './component/Login';
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 import * as serviceWorker from './serviceWorker';
-import 'bootstrap/dist/css/bootstrap.min.css';
+import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import './css/Home.css'
+import User from "./component/User";
 import Payment from "./component/Payment";
-import Ticket from "./component/Ticket";
-import CreateNewUser from "./component/CreateNewUser";
+import Login from "./component/Login";
 import BookTrain from "./component/BookTrain";
 import CreateNewPayment from "./component/CreateNewPayment";
+import Ticket from "./component/Ticket";
+import CreateNewUser from "./component/CreateNewUser";
 
+const styles = {
+    backgroundColor: '#808080'
+}
 
 
 const routing = (
-    <Router>
+    <div>
+        <Router>
+            <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"/>
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <div>
-            <ul>
-                <li >
-                    <Link to="/">View Users |</Link>
+            <nav className={"navbar navbar-inverse"}>
+                <p style={{fontSize:20,color:"white"}}><Link to="/login">Login </Link>|<Link to="/signUp"> Sign up</Link></p>
+                <div className={"container-fluid"}>
 
-                    <Link to="/payment">View Payments |</Link>
+                    <div className={"navbar-header"}>
 
-                    <Link to="/ticket">View Tickets </Link>
+                        <a className={"navbar-brand"} style={{color:"white",fontSize:30}}>Welcome</a>
 
-                    <Link style={{marginLeft:1100}}to="/login">Login </Link>
-                </li>
-            </ul>
+                    </div>
 
-            <ul>
-                <li >
-                    <Link to="/user">Sign up</Link>
-                </li>
-                <li >
-                    <Link to="/book">Book Train</Link>
-                </li>
-                <li >
-                    <Link to="/makePayment">Make Payment</Link>
-                </li>
+                </div>
+            </nav>
 
-            </ul>
+            <div className={"container-fluid text-center"}>
+                <div className={"row content"}>
+                    <div className={"col-sm-2 sidenav"}>
+                        <p><Link to="/booking">Book Train</Link></p>
+                        <p><Link to="/users">View Users </Link></p>
+                        <p><Link to="/payments">View Payments </Link></p>
+                    </div>
+                    <div className={"col-sm-8 text-left"} style={{textAlignLast:"center"}}>
+
+                        <Route path="/users" component={User} />
+                        <Route path="/payments" component={Payment} />
+                        <Route path="/login" component={Login}/>
+                        <Route exact path="/booking" component={BookTrain}/>
+                        <Route path="/booking/payment" component={CreateNewPayment}/>
+                        <Route path="/booking/payment/ticket" component={Ticket}/>
+                        <Route path="/signUp" component={CreateNewUser}/>
+
+                    </div>
+                    <div className={"col-sm-2 sidenav"}>
+                        <div className={"well"}>
+                            About Us
+                        </div>
+                        <div className={"well"}>
+                            Contact Us
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {/*<footer className={"container-fluid text-center"} >
+                <p>Footer Text</p>
+            </footer>*/}
 
 
-            <Route exact path="/" component={User}/>
-            <Route path="/login" component={Login} />
-            <Route path="/payment" component={Payment} />
-            <Route path="/ticket" component={Ticket} />
-            <Route path="/user" component={CreateNewUser} />
-            <Route path="/book" component={BookTrain} />
-            <Route path="/makePayment" component={CreateNewPayment} />
+
         </div>
-    </Router>
+        </Router>
+    </div>
 )
 
 ReactDOM.render(routing, document.getElementById('root'));
