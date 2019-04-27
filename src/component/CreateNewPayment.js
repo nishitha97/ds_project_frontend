@@ -60,7 +60,7 @@ class CreateNewPayment extends Component {
         console.log("dsdsdsdsdsssssssssssssssssss"+selectedTrain)
         return (
             <div>
-                <h1 style={{marginLeft:"30%"}}>Make Payment</h1><br/><br/>
+                <h1>Make Payment</h1><hr className={'hr'}/>
 
                 <form onSubmit={this.handleSubmit} style={{marginLeft:"30%"}}>
                     <table className={'table table-hover'} style={{width:400}}>
@@ -82,13 +82,13 @@ class CreateNewPayment extends Component {
                </tr>
 
                         <tr>
-                            <td><input type="submit" value="Submit"/></td>
+                            <td><input type="submit" value="Confirm Payment" className="btn btn-primary"/></td>
                             <td><input type="hidden" name="paymentStatus" value={paymentStatus}/></td>
                         </tr>
                         </tbody>
                     </table>
                 </form>
-                <Router><div><Link id="ticket" to="/booking/payment/ticket"></Link></div><Route path='/booking/payment/ticket' render={(props) => (
+                <hr className={'hr'}/><Router><div><Link id="ticket" to="/booking/payment/ticket"></Link></div><Route path='/booking/payment/ticket' render={(props) => (
                     <CreateNewTicket {...props} data={{userIdFrom,selectedTrain,numberOfTickets,to,from}}/>
                 )}/></Router>
             </div>

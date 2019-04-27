@@ -47,7 +47,7 @@ class Login extends Component {
         const {username,password} = this.state;
         return (
             <div>
-                <h1>Login Here</h1><br/><br/>
+                <h1>Login Here</h1><hr className={'hr'}/>
 
                 <form onSubmit={this.handleSubmit} style={{marginLeft:"30%"}}>
                     <table className={'table table-hover'} style={{width:400}}>
@@ -61,7 +61,7 @@ class Login extends Component {
                         <td><input type="password" id="password" name="password" value={password} onChange={this.handleChange}/></td>
                     </tr>
                     <tr>
-                        <td><input type="submit" value="Submit"/></td>
+                        <td><input type="submit" value="Login" className="btn btn-primary"/></td>
                     </tr>
                     </tbody>
                 </table>

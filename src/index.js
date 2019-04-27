@@ -42,9 +42,9 @@ const routing = (
             <div className={"container-fluid text-center"}>
                 <div className={"row content"}>
                     <div className={"col-sm-2 sidenav"} style={{height:"auto"}}>
-                        <p><Link to="/booking">Book Train</Link></p>
-                        <p><Link to="/users">View Users </Link></p>
-                        <p><Link to="/payments">View Payments </Link></p>
+                        <div className={"well"}><p style={{fontSize:20}}><Link to="/booking">Book Train</Link></p></div>
+                        <div className={"well"}><p style={{fontSize:15}}><Link to="/users">View Users </Link></p></div>
+                        <div className={"well"}><p style={{fontSize:15}}><Link to="/payments">View Payments </Link></p></div>
                     </div>
                     <div className={"col-sm-8 text-left"} style={{textAlignLast:"center"}}>
 
@@ -60,10 +60,10 @@ const routing = (
                     </div>
                     <div className={"col-sm-2 sidenav"}style={{height:"auto"}}>
                         <div className={"well"}>
-                            About Us
+                            <a href='#'> About Us</a>
                         </div>
                         <div className={"well"}>
-                            Contact Us
+                            <a href='#'> Contact Us </a>
                         </div>
                     </div>
                 </div>

@@ -30,3 +30,10 @@ footer {
     }
     .row.content {height:auto;}
 }
+
+.hr{
+    height:1px;
+    color:#333;
+    background-color:#00BFFF;
+    width:600px;
+}

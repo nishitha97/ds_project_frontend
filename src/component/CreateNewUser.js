@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import Axios from "../util/Axios";
+import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
+import HomePage from "./HomePage";
 
 class CreateNewUser extends Component {
     constructor(props) {
@@ -28,13 +30,15 @@ class CreateNewUser extends Component {
             .then(response=>{
                 console.log(response);
             })
+        alert("You have successfully signed up!");
+
     }
 
     render() {
         const {username,password,email,creditCardNo,contactNo} = this.state;
         return (
             <div>
-                <h1>Sign Up</h1><br/><br/>
+                <h1>Sign Up</h1><hr className={'hr'}/>
 
             <form onSubmit={this.handleSubmit} style={{marginLeft:"30%"}}>
                 <table className={'table table-hover'} style={{width:400}}>
@@ -60,10 +64,9 @@ class CreateNewUser extends Component {
                     <td> <input type="text" name="contactNo" value={contactNo} onChange={this.handleChange} /></td>
                 </tr>
                 <tr><td>
-                    <input type="submit" value="Submit" /></td></tr></tbody>
+                    <input type="submit" value="Sign Up" className="btn btn-primary"/></td></tr></tbody>
                 </table>
             </form>
-
             </div>
         );
     }

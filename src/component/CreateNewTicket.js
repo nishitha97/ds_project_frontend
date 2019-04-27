@@ -32,8 +32,6 @@ class CreateNewTicket extends Component {
 
     handleSubmit=(event)=> {
 
-        const url=document.getElementById('homepage');
-        url.click();
 
 
     }
@@ -46,12 +44,12 @@ class CreateNewTicket extends Component {
         //const {bookingId,userId,mobilePayment,creditCardPayment,paymentStatus} = this.state;
         return (
             <div>
-                <h1 style={{marginLeft:"30%"}}>Your ticket</h1><br/><br/>
+                <h1>Your ticket</h1><hr className={'hr'}/>
 
-                <form onSubmit={this.handleSubmit} style={{marginLeft:"30%"}}>
+                {/*<form onSubmit={this.handleSubmit} style={{marginLeft:"30%"}}>
 
-                </form>
-                    <table className={'table table-hover'} style={{width:400}}>
+                </form>*/}
+                    <table className={'table table-hover'} style={{width:600,marginLeft:"15%"}}>
                         <tbody>
                         <tr>
                             <td> From</td>
@@ -83,21 +81,19 @@ class CreateNewTicket extends Component {
                         </tr>
                         <tr>
                             <td>UserID </td>
-                            <td>{this.props.data.userId}</td>
+                            <td>{this.props.data.userIdFrom}</td>
                         </tr>
                         <tr>
                             <td>Date</td>
                             <td>{String(new Date())}</td>
                         </tr>
-                        <tr>
+                        {/*<tr>
                             <td><input type="submit" value="Submit"/></td>
                             <td><input type="hidden" name="paymentStatus"/></td>
-                        </tr>
+                        </tr>*/}
                         </tbody>
                     </table>
-                <Router><div><Link id="homepage" to="/"></Link></div><Route path='/' render={(props) => (
-                    <HomePage {...props} data={{}}/>
-                )}/></Router>
+
             </div>
         );
     }

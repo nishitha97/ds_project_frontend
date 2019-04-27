@@ -60,7 +60,7 @@ class BookTrain extends Component {
 
         return (
             <div>
-                <h1>Book a train</h1><br/><br/>
+                <h1>Book a train</h1><hr className={'hr'}/>
                 <form onSubmit={this.handleSubmit} style={{marginLeft:"30%"}}>
                     <table className={'table table-hover'} style={{width:400}}>
                         <tbody>
@@ -94,14 +94,12 @@ class BookTrain extends Component {
                             </select></td>
                         </tr>
                         <tr>
-                            <td><input type="submit" value="Submit" /></td>
-                            {/*                   <td><Router><div><Link to="/makePayment">Next-></Link></div><Route exact path="/makePayment" component={CreateNewPayment} /></Router></td>
-   */}
+                            <td><input type="submit" value="Confirm" className="btn btn-primary" /></td>
                         </tr>
                         </tbody>
                     </table>
                 </form>
-                <Router><div><Link id="payment" to="/booking/payment"></Link></div><Route path='/booking/payment' render={(props) => (
+                <hr className={'hr'}/><Router><div><Link id="payment" to="/booking/payment"></Link></div><Route path='/booking/payment' render={(props) => (
                     <CreateNewPayment {...props} data={{userId,selectedTrain,numberOfTickets,to,from}}/>
                 )}/></Router>
             </div>
