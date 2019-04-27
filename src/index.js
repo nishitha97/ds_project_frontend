@@ -12,6 +12,7 @@ import BookTrain from "./component/BookTrain";
 import CreateNewPayment from "./component/CreateNewPayment";
 import Ticket from "./component/Ticket";
 import CreateNewUser from "./component/CreateNewUser";
+import HomePage from "./component/HomePage";
 
 const styles = {
     backgroundColor: '#808080'
@@ -21,6 +22,7 @@ const styles = {
 const routing = (
     <div>
         <Router>
+            <meta name="viewport" content="width=device-width, initial-scale=1"/>
             <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"/>
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <div>
@@ -39,13 +41,14 @@ const routing = (
 
             <div className={"container-fluid text-center"}>
                 <div className={"row content"}>
-                    <div className={"col-sm-2 sidenav"}>
+                    <div className={"col-sm-2 sidenav"} style={{height:"auto"}}>
                         <p><Link to="/booking">Book Train</Link></p>
                         <p><Link to="/users">View Users </Link></p>
                         <p><Link to="/payments">View Payments </Link></p>
                     </div>
                     <div className={"col-sm-8 text-left"} style={{textAlignLast:"center"}}>
 
+                        <Route path="/" component={HomePage} />
                         <Route path="/users" component={User} />
                         <Route path="/payments" component={Payment} />
                         <Route path="/login" component={Login}/>
@@ -55,7 +58,7 @@ const routing = (
                         <Route path="/signUp" component={CreateNewUser}/>
 
                     </div>
-                    <div className={"col-sm-2 sidenav"}>
+                    <div className={"col-sm-2 sidenav"}style={{height:"auto"}}>
                         <div className={"well"}>
                             About Us
                         </div>

@@ -5,16 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="9a637ec2-6960-4e37-8c1e-7c35782a491e" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/src/component/HomePage.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/src/resource/image.jpg" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/src/component/BookTrain.js" afterPath="$PROJECT_DIR$/src/component/BookTrain.js" />
-      <change beforePath="$PROJECT_DIR$/src/component/CreateNewPayment.js" afterPath="$PROJECT_DIR$/src/component/CreateNewPayment.js" />
-      <change beforePath="$PROJECT_DIR$/src/component/CreateNewTicket.js" afterPath="$PROJECT_DIR$/src/component/CreateNewTicket.js" />
-      <change beforePath="$PROJECT_DIR$/src/component/CreateNewUser.js" afterPath="$PROJECT_DIR$/src/component/CreateNewUser.js" />
-      <change beforePath="$PROJECT_DIR$/src/component/Login.js" afterPath="$PROJECT_DIR$/src/component/Login.js" />
-      <change beforePath="$PROJECT_DIR$/src/component/PaymentList.js" afterPath="$PROJECT_DIR$/src/component/PaymentList.js" />
-      <change beforePath="$PROJECT_DIR$/src/component/PaymentListItem.js" afterPath="$PROJECT_DIR$/src/component/PaymentListItem.js" />
-      <change beforePath="$PROJECT_DIR$/src/component/UserList.js" afterPath="$PROJECT_DIR$/src/component/UserList.js" />
+      <change beforePath="$PROJECT_DIR$/src/component/HomePage.js" afterPath="$PROJECT_DIR$/src/component/HomePage.js" />
       <change beforePath="$PROJECT_DIR$/src/index.js" afterPath="$PROJECT_DIR$/src/index.js" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -68,16 +61,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CreateNewTicket.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/component/CreateNewTicket.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="48">
-              <caret line="2" column="0" lean-forward="false" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="72" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="BookTrain.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/component/BookTrain.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -93,10 +76,22 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="192">
-              <caret line="62" column="38" lean-forward="false" selection-start-line="62" selection-start-column="38" selection-end-line="62" selection-end-column="38" />
+            <state relative-caret-position="395">
+              <caret line="60" column="78" lean-forward="false" selection-start-line="60" selection-start-column="78" selection-end-line="60" selection-end-column="78" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="HomePage.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/component/HomePage.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="264">
+              <caret line="11" column="59" lean-forward="false" selection-start-line="11" selection-start-column="59" selection-end-line="11" selection-end-column="59" />
+              <folding>
+                <element signature="e#0#39#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -188,12 +183,12 @@
         <option value="$PROJECT_DIR$/src/component/PaymentListItem.js" />
         <option value="$PROJECT_DIR$/src/component/CreateNewPayment.js" />
         <option value="$PROJECT_DIR$/src/component/CreateNewTicket.js" />
-        <option value="$PROJECT_DIR$/src/component/HomePage.js" />
         <option value="$PROJECT_DIR$/src/component/Login.js" />
         <option value="$PROJECT_DIR$/src/component/UserList.js" />
         <option value="$PROJECT_DIR$/src/component/PaymentList.js" />
         <option value="$PROJECT_DIR$/src/component/CreateNewUser.js" />
         <option value="$PROJECT_DIR$/src/component/BookTrain.js" />
+        <option value="$PROJECT_DIR$/src/component/HomePage.js" />
         <option value="$PROJECT_DIR$/src/index.js" />
       </list>
     </option>
@@ -254,7 +249,7 @@
               <item name="project" type="b2602c69:ProjectViewProjectNode" />
               <item name="project" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="css" type="462c0819:PsiDirectoryNode" />
+              <item name="resource" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="project" type="b2602c69:ProjectViewProjectNode" />
@@ -280,6 +275,11 @@
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.selected.package.eslint" value="C:\Users\Nishitha\Desktop\FrontEnd\project\node_modules\eslint" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Nishitha\Desktop\FrontEnd\project\src\resource" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -395,12 +395,12 @@
       <workItem from="1556206040740" duration="828000" />
       <workItem from="1556206885392" duration="11309000" />
       <workItem from="1556251669707" duration="34039000" />
-      <workItem from="1556342769899" duration="24104000" />
+      <workItem from="1556342769899" duration="25631000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="71668000" />
+    <option name="totallyTimeSpent" value="73195000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1058" extended-state="6" />
@@ -445,7 +445,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/index.css" />
     <entry file="file://$PROJECT_DIR$/src/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="48">
@@ -702,16 +701,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/component/HomePage.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="683">
-          <caret line="41" column="0" lean-forward="false" selection-start-line="41" selection-start-column="0" selection-end-line="41" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#39#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="312">
@@ -803,10 +792,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/component/HomePage.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="264">
+          <caret line="11" column="59" lean-forward="false" selection-start-line="11" selection-start-column="59" selection-end-line="11" selection-end-column="59" />
+          <folding>
+            <element signature="e#0#39#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="192">
-          <caret line="62" column="38" lean-forward="false" selection-start-line="62" selection-start-column="38" selection-end-line="62" selection-end-column="38" />
+        <state relative-caret-position="395">
+          <caret line="60" column="78" lean-forward="false" selection-start-line="60" selection-start-column="78" selection-end-line="60" selection-end-column="78" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
