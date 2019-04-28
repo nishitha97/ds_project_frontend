@@ -8,7 +8,7 @@ class HomePage extends Component {
 
         return (
             <div>
-
+                <p style={{alignContent:"center",color:"black",fontSize:20}}>Please Login or SignUp to begin booking</p>
                 <img src={image} style={{width:800,height:400}}/>
             </div>
 

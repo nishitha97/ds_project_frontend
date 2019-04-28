@@ -52,6 +52,10 @@ class CreateNewTicket extends Component {
                     <table className={'table table-hover'} style={{width:600,marginLeft:"15%"}}>
                         <tbody>
                         <tr>
+                            <td>UserName </td>
+                            <td><p>{this.props.data.username}</p></td>
+                        </tr>
+                        <tr>
                             <td> From</td>
                             <td> {this.props.data.from}</td>
                         </tr>
@@ -67,7 +71,7 @@ class CreateNewTicket extends Component {
                             <td>Train </td>
                             <td>{this.props.data.selectedTrain}</td>
                         </tr>
-                        <tr>
+                        {/*<tr>
                             <td>Arrival Time </td>
                             <td>{this.props.data.numberOfTickets}</td>
                         </tr>
@@ -78,11 +82,7 @@ class CreateNewTicket extends Component {
                         <tr>
                             <td>Platform </td>
                             <td>{this.props.data.numberOfTickets}</td>
-                        </tr>
-                        <tr>
-                            <td>UserID </td>
-                            <td>{this.props.data.userIdFrom}</td>
-                        </tr>
+                        </tr>*/}
                         <tr>
                             <td>Date</td>
                             <td>{String(new Date())}</td>

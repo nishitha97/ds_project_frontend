@@ -14,12 +14,12 @@ class UserList extends Component {
     }
 
 
-    delete = (id) => {
+    /*delete = (id) => {
         this.setState(prevState => ({
             data: prevState.data.filter(el => el !== id)
         }));
         console.log(id);
-    }
+    }*/
 
 
     render() {

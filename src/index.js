@@ -14,11 +14,6 @@ import Ticket from "./component/Ticket";
 import CreateNewUser from "./component/CreateNewUser";
 import HomePage from "./component/HomePage";
 
-const styles = {
-    backgroundColor: '#808080'
-}
-
-
 const routing = (
     <div>
         <Router>
@@ -32,7 +27,7 @@ const routing = (
 
                     <div className={"navbar-header"}>
 
-                        <a className={"navbar-brand"} style={{color:"white",fontSize:30}}>Welcome</a>
+                        <a className={"navbar-brand"} style={{color:"white",fontSize:30}}>Welcome ! </a><br/>
 
                     </div>
 
@@ -42,9 +37,9 @@ const routing = (
             <div className={"container-fluid text-center"}>
                 <div className={"row content"}>
                     <div className={"col-sm-2 sidenav"} style={{height:"auto"}}>
-                        <div className={"well"}><p style={{fontSize:20}}><Link to="/booking">Book Train</Link></p></div>
-                        <div className={"well"}><p style={{fontSize:15}}><Link to="/users">View Users </Link></p></div>
-                        <div className={"well"}><p style={{fontSize:15}}><Link to="/payments">View Payments </Link></p></div>
+                      {/*  <div className={"well"}><p style={{fontSize:20}}><Link to="/booking">Book Train</Link></p></div>*/}
+                        <div className={"well"}><p style={{fontSize:15}}><Link to="/users">View All Users </Link></p></div>
+                        <div className={"well"}><p style={{fontSize:15}}><Link to="/payments">View All Payments </Link></p></div>
                     </div>
                     <div className={"col-sm-8 text-left"} style={{textAlignLast:"center"}}>
 

@@ -30,21 +30,25 @@ class Login extends Component {
                 console.log(response.data.id)
                 if(response.status==200){
                     console.log(response.status);
-                    this.setState={
-                    isAuthenticated:true,
-                    userId:response.data.id
-                }
+                    this.setState({
+                        isAuthenticated:true,
+                        username:response.data.username,
+                        userId:response.data.id
+                })
+                    alert("login successful")
                     const imageurl = document.getElementById('link');
                     imageurl.click();
 
                 }
-            })
+            }).catch((err) => {
+                alert("Login unsuccessful !\nPlease revalidate credentials and try again\n" + err);
+        });
 
     }
 
 
     render() {
-        const {username,password} = this.state;
+        const {username,password,isAuthenticated,userId} = this.state;
         return (
             <div>
                 <h1>Login Here</h1><hr className={'hr'}/>
@@ -67,7 +71,7 @@ class Login extends Component {
                 </table>
                 </form>
                 <Router><div><Link id="link" to="/book"></Link></div><Route path='/book' render={(props) => (
-                    <BookTrain {...props} data={{username,password}}/>
+                    <BookTrain {...props} data={{username,isAuthenticated,userId}}/>
                 )}/></Router>
             </div>
 

@@ -2,7 +2,8 @@ import React, {Component} from 'react';
 import Axios from "../util/Axios";
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 import HomePage from "./HomePage";
-
+import  { Redirect } from 'react-router-dom'
+import BookTrain from "./BookTrain";
 class CreateNewUser extends Component {
     constructor(props) {
         super(props);
@@ -11,7 +12,9 @@ class CreateNewUser extends Component {
             password: '',
             email:'',
             creditCardNo:'',
-            contactNo:''
+            contactNo:'',
+            userId:'',
+            isAuthenticated:false,
 
         };
 
@@ -29,18 +32,31 @@ class CreateNewUser extends Component {
         Axios.post('http://localhost:8081/api/v1/users',{username,password,email,creditCardNo,contactNo})
             .then(response=>{
                 console.log(response);
+                this.setState({
+                    isAuthenticated:true,
+                    username:response.data.username,
+                    userId:response.data.id
+
+
+                })
+                alert("Sign up successful")
+                const imageurl = document.getElementById('link');
+                imageurl.click();
+
             })
-        alert("You have successfully signed up!");
+
 
     }
 
+
+
     render() {
-        const {username,password,email,creditCardNo,contactNo} = this.state;
+        const {username,password,email,creditCardNo,contactNo,isAuthenticated,userId} = this.state;
         return (
             <div>
                 <h1>Sign Up</h1><hr className={'hr'}/>
 
-            <form onSubmit={this.handleSubmit} style={{marginLeft:"30%"}}>
+            <form name="Signup" onSubmit={this.handleSubmit} style={{marginLeft:"30%"}}>
                 <table className={'table table-hover'} style={{width:400}}>
                     <tbody>
                 <tr>
@@ -67,6 +83,9 @@ class CreateNewUser extends Component {
                     <input type="submit" value="Sign Up" className="btn btn-primary"/></td></tr></tbody>
                 </table>
             </form>
+                <Router><div><Link id="link" to="/book"></Link></div><Route path='/book' render={(props) => (
+                    <BookTrain {...props} data={{username,isAuthenticated,userId}}/>
+                )}/></Router>
             </div>
         );
     }
