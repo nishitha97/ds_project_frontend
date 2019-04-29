@@ -3,8 +3,11 @@ import Axios from "../util/Axios";
 import TicketList from "./TicketList";
 
 
-
-
+/**
+ * component which generates a ticket based on the booking and payment info provided by the user
+ *
+ * @author IT17006880
+ */
 class Ticket extends Component {
 
     constructor(props) {
@@ -18,9 +21,9 @@ class Ticket extends Component {
 
 
     componentDidMount() {
-        Axios.get("http://localhost:8081/api/v1/tickets")
+        Axios.get("http://localhost:8081/api/v1/tickets")//api call to get all created tickets from the database
             .then(response =>
-                    response.data.map(ticket => ({
+                    response.data.map(ticket => ({//response ticket array list is mapped to ticket object
                         arrivalTime:ticket.arrivalTime,
                         departureTime:ticket.departureTime,
                         from:ticket.from,
@@ -32,27 +35,17 @@ class Ticket extends Component {
                         userID:ticket.userID,
 
                     }))
-                // {
-                //     this.setState({
-                //         users:response.data.users,
-                //         isLoading: false
-                //     });
-                // }
 
             )
             .then(tickets => {
-                this.setState({
+                this.setState({//state is updated from the response
                     tickets:tickets,
                     isLoading: false
                 });
             })
 
-            .catch(error => this.setState({ error, isLoading: false }));
+            .catch(error => this.setState({ error, isLoading: false }));//when error occurs
     }
-
-
-
-
 
 
     render() {
@@ -63,34 +56,6 @@ class Ticket extends Component {
 
         );
     }
-
-    // render() {
-    //     const {isLoading, users} = this.state;
-    //     return (
-    //         <React.Fragment>
-    //             <h2>Random User</h2>
-    //             <div>
-    //                 {!isLoading ? (
-    //                     users.map(user => {
-    //                         const { name, email} = user;
-    //                         return (
-    //                             <div>
-    //                                 <p>{name}</p>
-    //                                 <div>
-    //                                     <img alt={name}/>
-    //                                 </div>
-    //                                 <p>{email}</p>
-    //                                 <hr/>
-    //                             </div>
-    //                         );
-    //                     })
-    //                 ) : (
-    //                     <p>Loading...</p>
-    //                 )}
-    //             </div>
-    //         </React.Fragment>
-    //     );
-    // }
 }
 
 export default Ticket;

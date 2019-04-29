@@ -5,6 +5,12 @@ import CreateNewPayment from "./CreateNewPayment";
 import  { Redirect } from 'react-router-dom'
 import { browserHistory } from 'react-router';
 import Login from "./Login";
+
+/**
+ * component which renders interface for a user to book a Train providing relevant details
+ *
+ * @author IT17006880
+ */
 class BookTrain extends Component {
     constructor(props) {
         super(props);
@@ -23,6 +29,9 @@ class BookTrain extends Component {
         };
 
     }
+
+    //sets and updates the state value when user enters text in the input box based on the name given to the input box
+    //called when an onChange event is registered
     handleChange=(e)=>{
         this.setState({ [e.target.name]: e.target.value });
 
@@ -42,9 +51,9 @@ class BookTrain extends Component {
 
 
     componentDidMount(){
-        Axios.get('http://localhost:8081/api/v1/trains')
+        Axios.get('http://localhost:8081/api/v1/trains')//api call get the stored details from the mongodb database and pass to input form
             .then(response =>
-                    response.data.map(train => ({
+                    response.data.map(train => ({//response array list is mapped to a train object
 
                         toDest: train.to,
                         fromDest: train.from,
@@ -58,7 +67,7 @@ class BookTrain extends Component {
             )
             .then(trainDetails => {
                 this.setState({
-                    trainsDetails:trainDetails,
+                    trainsDetails:trainDetails,//state is updated
 
                 });
             })
@@ -70,22 +79,25 @@ class BookTrain extends Component {
 
     }
 
+    //called when submit button pressed
     handleSubmit=(event)=> {
-        // alert('A name was submitted: ' + this.state.username);
+
         event.preventDefault();
         const {userId,selectedTrain,numberOfTickets,to,from}=this.state;
 
+        //api call to create a new booking from user inputs
         Axios.post('http://localhost:8081/api/v1/booking',{userId,selectedTrain,numberOfTickets,to,from})
             .then(response=>{
                 console.log(response);
                 this.setState({
-                    bookingId:response.data.id
+                    bookingId:response.data.id//update booking id state with response from newly created booking object id
                         });
+                alert("Your Booking is Successful")
+                const url = document.getElementById('payment');//renders next component(CreateNewPayment) by clicking on the Link
+                                                               // since booking a train is now completed
+                url.click();
             });
 
-
-        const url = document.getElementById('payment');
-        url.click();
     }
 
    // componentWillReceiveProps(){
@@ -141,10 +153,12 @@ class BookTrain extends Component {
                                 { this.state.trainsDetails.map((trainDetail,index)=> {
 
                                     return(
+                                        <option key={index} value={trainDetail.train}>{trainDetail.train}</option>
 
-                                            <option key={index} value={trainDetail.train}>
-                                                Train:{trainDetail.train} From:{trainDetail.fromDest} To:{trainDetail.toDest} arrivalTime:{trainDetail.arrivalTime} departureTime:{trainDetail.departureTime} PlatForm:{trainDetail.platform}
-                                            </option>
+
+                                            // <option key={index} value={trainDetail.train}>
+                                            //     Train:{trainDetail.train} From:{trainDetail.fromDest} To:{trainDetail.toDest} arrivalTime:{trainDetail.arrivalTime} departureTime:{trainDetail.departureTime} PlatForm:{trainDetail.platform}
+                                            // </option>
 
 
                                     );})}

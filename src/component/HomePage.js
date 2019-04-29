@@ -1,6 +1,13 @@
 import React, {Component} from 'react';
 import {Route} from 'react-router-dom';
 import image from '../resource/image.jpg';
+
+
+/**
+ * home page
+ *
+ * @author IT17006880
+ */
 class HomePage extends Component {
 
 

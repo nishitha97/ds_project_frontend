@@ -4,6 +4,11 @@ import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 import HomePage from "./HomePage";
 
 
+/**
+ * component which renders generated ticket details based on user booking and payment
+ *
+ * @author IT17006880
+ */
 class CreateNewTicket extends Component {
     constructor(props) {
         super(props);

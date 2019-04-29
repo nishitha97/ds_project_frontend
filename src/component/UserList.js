@@ -2,7 +2,11 @@ import React, {Component} from 'react';
 import UserListItem from "./UserListItem";
 
 
-
+/**
+ * component which renders the user list to be displayed in the User component
+ *
+ * @author IT17006880
+ */
 class UserList extends Component {
     constructor(props) {
         super(props);
@@ -41,7 +45,5 @@ class UserList extends Component {
         );
     }
 }
-
-
 
 export default UserList;

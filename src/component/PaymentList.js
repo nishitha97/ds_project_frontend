@@ -1,13 +1,14 @@
 import React, {Component} from 'react';
 import PaymentListItem from './PaymentListItem';
 
-
+/**
+ * component which renders the payment list to be displayed in the Payment component
+ *
+ * @author IT17006880
+ */
 class PaymentList extends Component {
     constructor(props) {
         super(props);
-        /*this.state={
-            users:this.props.users
-        }*/
 
     }
 

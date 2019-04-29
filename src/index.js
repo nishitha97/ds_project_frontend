@@ -14,6 +14,11 @@ import Ticket from "./component/Ticket";
 import CreateNewUser from "./component/CreateNewUser";
 import HomePage from "./component/HomePage";
 
+/**
+ * index(home) page
+ *
+ * @author IT17006880
+ */
 const routing = (
     <div>
         <Router>

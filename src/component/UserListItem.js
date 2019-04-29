@@ -1,33 +1,35 @@
 import React, {Component} from 'react';
 
-
+/**
+ * component which renders the each User List item(row) in the UserList component
+ *
+ * @author IT17006880
+ */
 class UserListItem extends Component {
 
-/*
+    /*
 
-    delete(id) {
-        this.props.delete(id);
-    }
-*/
-
+        delete(id) {
+            this.props.delete(id);
+        }
+    */
 
 
     render() {
         return (
 
-            this.props.users.map((list,index)=>{
-                return(
+            this.props.users.map((list, index) => {//user list array list object passed through props is mapped and rendered
+                return (
 
-                      <tr key={index}>
+                    <tr key={index}>
 
-                          <td>{list.name}</td>
-                          <td>{list.email}</td>
+                        <td>{list.name}</td>
+                        <td>{list.email}</td>
 
-                       {/*   <td><button onClick={this.delete.bind(this,index)}>Delete</button></td>*/}
-                      </tr>
+                        {/*   <td><button onClick={this.delete.bind(this,index)}>Delete</button></td>*/}
+                    </tr>
 
                 );
-
 
 
             })

@@ -3,8 +3,11 @@ import List from './UserList'
 import Axios from "../util/Axios";
 import PaymentList from "./PaymentList";
 
-
-
+/**
+ * component which renders a table providing all user details stored in the database
+ *
+ * @author IT17006880
+ */
 class Payment extends Component {
 
     constructor(props) {
@@ -18,10 +21,10 @@ class Payment extends Component {
 
 
     componentDidMount() {
-        Axios.get("http://localhost:8081/api/v1/payments")
+        Axios.get("http://localhost:8081/api/v1/payments")//api call to get payment details from the database
             .then(response =>
 
-                    response.data.map(payment => ({
+                    response.data.map(payment => ({//response array list mapped to payment object
 
                         creditCardPayment: payment.creditCardPayment,
                         mobilePayment: payment.mobilePayment,
@@ -30,21 +33,15 @@ class Payment extends Component {
                         paymentStatus:payment.paymentStatus
 
                     }))
-                // {
-                //     this.setState({
-                //         users:response.data.users,
-                //         isLoading: false
-                //     });
-                // }
 
-            ).then(payments => {
+            ).then(payments => {//state is updated from the response received
                 this.setState({
                     payments:payments,
                     isLoading: false
                 });
             })
 
-            .catch(error => this.setState({ error, isLoading: false }));
+            .catch(error => this.setState({ error, isLoading: false }));//when error occurs
     }
 
 
@@ -61,33 +58,7 @@ class Payment extends Component {
         );
     }
 
-    // render() {
-    //     const {isLoading, users} = this.state;
-    //     return (
-    //         <React.Fragment>
-    //             <h2>Random User</h2>
-    //             <div>
-    //                 {!isLoading ? (
-    //                     users.map(user => {
-    //                         const { name, email} = user;
-    //                         return (
-    //                             <div>
-    //                                 <p>{name}</p>
-    //                                 <div>
-    //                                     <img alt={name}/>
-    //                                 </div>
-    //                                 <p>{email}</p>
-    //                                 <hr/>
-    //                             </div>
-    //                         );
-    //                     })
-    //                 ) : (
-    //                     <p>Loading...</p>
-    //                 )}
-    //             </div>
-    //         </React.Fragment>
-    //     );
-    // }
+
 }
 
 export default Payment;

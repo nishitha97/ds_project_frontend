@@ -3,6 +3,12 @@ import Axios from "../util/Axios";
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 import CreateNewTicket from "./CreateNewTicket";
 
+/**
+ * component which renders interface for a make a payment providing relevant details
+ *
+ * @author IT17006880
+ */
+
 class CreateNewPayment extends Component {
     constructor(props) {
         super(props);
@@ -22,27 +28,39 @@ class CreateNewPayment extends Component {
         };
 
     }
+
+    //sets and updates the state value when user enters text in the input box based on the name given to the input box
+    //called when an onChange event is registered
     handleChange=(e)=>{
         this.setState({ [e.target.name]: e.target.value });
     }
 
+    //sets and updates the state value for when mobile payment radio button is selected by the user
+    //called when an onChange event is registered
     handleRadioMobile=(e)=>{
         this.setState({ mobilePayment: true });
     }
 
+    //sets and updates the state value for when credit payment radio button is selected by the user
+    //called when an onChange event is registered
     handleRadioCredit=(e)=>{
         this.setState({ creditCardPayment: true });
     }
 
+    //called when submit button is pressed
     handleSubmit=(event)=> {
 
         event.preventDefault();
         const {bookingId,creditCardPayment,mobilePayment,paymentStatus,userId}=this.state;
+        //api call to create a new payment based on user input values
         Axios.post('http://localhost:8081/api/v1/payments',{bookingId,creditCardPayment,mobilePayment,paymentStatus,userId})
             .then(response=>{
                 console.log(response);
-                const url = document.getElementById('ticket');
+                alert("Your Payment is successful ! ")
+                const url = document.getElementById('ticket');//renders next component(CreateNewTicket) by clicking on the Link
+                                                              // since payment is now completed
                 url.click();
+
             })
 
 

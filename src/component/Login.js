@@ -3,6 +3,12 @@ import Axios from "../util/Axios";
 import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
 import BookTrain from "./BookTrain";
 
+
+/**
+ * component which renders an interface for a user to login by providing user credentials
+ *
+ * @author IT17006880
+ */
 class Login extends Component {
     constructor(props) {
         super(props);
@@ -15,33 +21,38 @@ class Login extends Component {
 
     }
 
+    //sets and updates the state value when user enters text in the input box based on the name given to the input box
+    //called when an onChange event is registered
     handleChange = (e) => {
         this.setState({[e.target.name]: e.target.value});
     }
 
+    //called when submit button is pressed
     handleSubmit = (event) => {
-        // alert('A name was submitted: ' + this.state.username);
         event.preventDefault();
-        const {username, password} = this.state
+        const {username, password} = this.state;
 
-        Axios.post('http://localhost:8081/api/v1/session/authenticate', {username, password})
+        Axios.post('http://localhost:8081/api/v1/session/authenticate', {username, password})//posts user credentials entered
+                                                                                             // to validate login
             .then(response => {
                 console.log(response);
                 console.log(response.data.id)
-                if(response.status==200){
+                if(response.status==200){//check if authenticated based on response code
                     console.log(response.status);
                     this.setState({
                         isAuthenticated:true,
                         username:response.data.username,
                         userId:response.data.id
                 })
-                    alert("login successful")
-                    const imageurl = document.getElementById('link');
+                    alert("Login Successful ! ")
+                    const imageurl = document.getElementById('link');//renders next component(Book Train) by clicking on the Link
+                                                                      // since Login process is now completed
                     imageurl.click();
 
                 }
             }).catch((err) => {
-                alert("Login unsuccessful !\nPlease revalidate credentials and try again\n" + err);
+                alert("Login unsuccessful !\nPlease revalidate credentials and try again\n" + err);//when user is not authenticated
+                                                                                                   //usually a 401 status code
         });
 
     }

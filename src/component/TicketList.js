@@ -2,14 +2,14 @@ import React, {Component} from 'react';
 import PaymentListItem from './PaymentListItem';
 import TicketListItem from "./TicketListItem";
 
-
+/**
+ * component which renders the ticket list to be displayed in the Ticket component
+ *
+ * @author IT17006880
+ */
 class TicketList extends Component {
     constructor(props) {
         super(props);
-        /*this.state={
-            users:this.props.users
-        }*/
-
     }
 
 
@@ -21,7 +21,6 @@ class TicketList extends Component {
   */
 
     render() {
-
 
         return (
             <div>
