@@ -81,6 +81,7 @@ class BookTrain extends Component {
     }
 
 
+    //fetch data before render
     componentDidMount(){
         Axios.get('http://localhost:8081/api/v1/trains')//api call get the stored details from the mongodb database and pass to input form
             .then(response =>
