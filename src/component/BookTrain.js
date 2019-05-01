@@ -23,7 +23,9 @@ class BookTrain extends Component {
             isAuthenticated:this.props.data.isAuthenticated,
             username:this.props.data.username,
             bookingId:'',//here
-            trainsDetails:[]
+            trainsDetails:[],
+            fields:{},
+            errors:{}
 
 
         };
@@ -33,7 +35,13 @@ class BookTrain extends Component {
     //sets and updates the state value when user enters text in the input box based on the name given to the input box
     //called when an onChange event is registered
     handleChange=(e)=>{
-        this.setState({ [e.target.name]: e.target.value });
+        let fields = this.state.fields;
+        fields[e.target.name] = e.target.value;
+
+        this.setState({
+            fields,
+            [e.target.name]: e.target.value
+        });
 
     }
 
@@ -47,6 +55,29 @@ class BookTrain extends Component {
 
     handleChangeSelectTrain=(e)=>{
         this.setState({selectedTrain: e.target.value});
+    }
+
+
+    //form validation is handled here
+    validateForm(){
+        let fields = this.state.fields;
+        let errors = {};
+        let formIsValid = true;
+
+        if (!fields["numberOfTickets"]) {
+            formIsValid = false;
+            alert("Please Enter a valid number");
+        }
+       if (typeof fields["numberOfTickets"] !== "undefined") {
+            if (!fields["numberOfTickets"].match(/^[1-9]*$/)) {
+                formIsValid = false;
+                alert("Please Enter a valid number");
+            }
+        }
+        this.setState({
+            errors: errors
+        });
+        return formIsValid;
     }
 
 
@@ -85,19 +116,21 @@ class BookTrain extends Component {
         event.preventDefault();
         const {userId,selectedTrain,numberOfTickets,to,from}=this.state;
 
-        //api call to create a new booking from user inputs
-        Axios.post('http://localhost:8081/api/v1/booking',{userId,selectedTrain,numberOfTickets,to,from})
-            .then(response=>{
-                console.log(response);
-                this.setState({
-                    bookingId:response.data.id//update booking id state with response from newly created booking object id
-                        });
-                alert("Your Booking is Successful")
-                const url = document.getElementById('payment');//renders next component(CreateNewPayment) by clicking on the Link
-                                                               // since booking a train is now completed
-                url.click();
-            });
+        if(this.validateForm()) {//submit form only if user input is validated
 
+            //api call to create a new booking from user inputs
+            Axios.post('http://localhost:8081/api/v1/booking', {userId, selectedTrain, numberOfTickets, to, from})
+                .then(response => {
+                    console.log(response);
+                    this.setState({
+                        bookingId: response.data.id//update booking id state with response from newly created booking object id
+                    });
+                    alert("Your Booking is Successful")
+                    const url = document.getElementById('payment');//renders next component(CreateNewPayment) by clicking on the Link
+                                                                   // since booking a train is now completed
+                    url.click();
+                });
+        }
     }
 
    // componentWillReceiveProps(){
@@ -140,8 +173,8 @@ class BookTrain extends Component {
         return (
             <div>
                 <h1>Book a train</h1><hr className={'hr'}/>
-                <form onSubmit={this.handleSubmit} style={{marginLeft:"5%"}}>
-                    <table className={'table table-hover'} style={{width:1000}}>
+                <form onSubmit={this.handleSubmit} style={{marginLeft:"15%"}}>
+                    <table className={'table table-hover'} style={{width:600}}>
                         <tbody>
                         <tr>
                             <td> Username:</td>
@@ -163,12 +196,10 @@ class BookTrain extends Component {
 
                                     );})}
                             </select></td>
-
-
                         </tr>
                         <tr>
                             <td> Enter number Of Tickets:</td>
-                            <td> <input type="text" name="numberOfTickets" value={numberOfTickets} onChange={this.handleChange} /></td>
+                            <td><input type="number" name="numberOfTickets" value={numberOfTickets} onChange={this.handleChange}/></td>
                         </tr>
                         <tr>
                             <td>  To:</td>
