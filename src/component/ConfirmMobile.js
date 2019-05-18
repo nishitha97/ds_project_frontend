@@ -16,11 +16,13 @@ class ConfirmMobile extends Component {
 
     render() {
         return (
+            <tbody>
             <tr>
                 <td>Confirm Your Mobile Number to verify Payment</td>
                 <td><input type="text" name="mobileNumber" value={this.props.mobileNumber}
                            onChange={this.handleChange}/></td>
             </tr>
+            </tbody>
         );
     }
 }

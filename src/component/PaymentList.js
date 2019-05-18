@@ -12,17 +12,7 @@ class PaymentList extends Component {
 
     }
 
-
-  /*  delete = (id) => {
-        this.setState(prevState => ({
-            users: prevState.users.filter(el => el != id)
-        }));
-    }
-*/
-
     render() {
-
-
         return (
             <div>
                 <table className={'table table-hover'}>
@@ -32,7 +22,6 @@ class PaymentList extends Component {
                         <th>BookingId</th>
                         <th>CreditCardPayment</th>
                         <th>MobilePayment</th>
-                        <th>PaymentStatus</th>
                     </tr>
                     <PaymentListItem payments={this.props.payments} isLoading={this.props.isLoading}/>
                     </tbody>
@@ -42,7 +31,6 @@ class PaymentList extends Component {
         );
     }
 }
-
 
 
 export default PaymentList;

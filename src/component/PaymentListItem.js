@@ -7,23 +7,14 @@ import React, {Component} from 'react';
  */
 class PaymentListItem extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
     }
 
-
-
-
-    /*delete(id) {
-        this.props.delete(id);
-    }
-*/
-
-
     render() {
         return (
-            this.props.payments.map((list,index)=>{//payment object array list passed through props is mapped and rendered
-                return(
+            this.props.payments.map((list, index) => {//payment object array list passed through props is mapped and rendered
+                return (
 
                     <tr key={index}>
 
@@ -31,12 +22,10 @@ class PaymentListItem extends Component {
                         <td>{list.bookingId}</td>
                         <td>{String(list.creditCardPayment)}</td>
                         <td>{String(list.mobilePayment)}</td>
-                        <td>{list.paymentStatus}</td>
 
                     </tr>
 
                 );
-
 
 
             })

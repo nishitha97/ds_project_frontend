@@ -1,7 +1,5 @@
 import React, {Component} from 'react';
-import Axios from "../util/Axios";
-import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
-import HomePage from "./HomePage";
+import {Redirect, Route} from 'react-router-dom';
 
 
 /**
@@ -12,95 +10,86 @@ import HomePage from "./HomePage";
 class CreateNewTicket extends Component {
     constructor(props) {
         super(props);
-       /* this.state = {
-            bookingId: '',
-            creditCardPayment: false,
-            mobilePayment:false,
-            paymentStatus:'NOT PAID',
-            userId:''
-
-        };
-*/
-
-    }
-    handleChange=(e)=>{
-        this.setState({ [e.target.name]: e.target.value });
-    }
-
-    handleRadioMobile=(e)=>{
-        this.setState({ mobilePayment: true });
-    }
-
-    handleRadioCredit=(e)=>{
-        this.setState({ creditCardPayment: true });
-    }
-
-    handleSubmit=(event)=> {
-
+        this.state = {
+            isAuthenticated: this.props.isAuthenticated,
+            routeToNextPage: false
+        }
 
 
     }
 
+    handleChange = (e) => {
+        this.setState({[e.target.name]: e.target.value});
+    }
 
-
+    handleSubmit = () => {
+        alert("You are now logged out of your account !")
+        this.setState({
+            isAuthenticated: false,
+            routeToNextPage: true,
+        })
+    }
+    renderRedirect = () => {
+        // return <Redirect to='/' />
+        this.props.history.push("/login")
+    }
 
 
     render() {
-        //const {bookingId,userId,mobilePayment,creditCardPayment,paymentStatus} = this.state;
-        return (
-            <div>
-                <h1>Your ticket</h1><hr className={'hr'}/>
-
-                {/*<form onSubmit={this.handleSubmit} style={{marginLeft:"30%"}}>
-
-                </form>*/}
-                    <table className={'table table-hover'} style={{width:600,marginLeft:"15%"}}>
+        if (this.state.isAuthenticated && (!this.state.routeToNextPage)) {
+            return (
+                <div>
+                    <h1>Your ticket</h1>
+                    <hr className={'hr'}/>
+                    <table className={'table table-hover'} style={{width: 800, marginLeft: "5%"}}>
                         <tbody>
                         <tr>
-                            <td>UserName </td>
-                            <td><p>{this.props.data.username}</p></td>
+                            <td>UserName</td>
+                            <td><p>{this.props.username}</p></td>
                         </tr>
                         <tr>
                             <td> From</td>
-                            <td> {this.props.data.from}</td>
+                            <td> {this.props.from}</td>
                         </tr>
                         <tr>
-                            <td>To </td>
-                            <td>{this.props.data.to}</td>
+                            <td>To</td>
+                            <td>{this.props.to}</td>
                         </tr>
                         <tr>
-                            <td>Tickets Booked </td>
-                            <td>{this.props.data.numberOfTickets}</td>
+                            <td>Tickets Booked</td>
+                            <td>{this.props.numberOfTickets}</td>
                         </tr>
                         <tr>
-                            <td>Train </td>
-                            <td>{this.props.data.selectedTrain}</td>
+                            <td>Train</td>
+                            <td>{this.props.selectedTrain}</td>
                         </tr>
-                        {/*<tr>
-                            <td>Arrival Time </td>
-                            <td>{this.props.data.numberOfTickets}</td>
-                        </tr>
-                        <tr>
-                            <td>Departure Time </td>
-                            <td>{this.props.data.numberOfTickets}</td>
-                        </tr>
-                        <tr>
-                            <td>Platform </td>
-                            <td>{this.props.data.numberOfTickets}</td>
-                        </tr>*/}
                         <tr>
                             <td>Date</td>
                             <td>{String(new Date())}</td>
                         </tr>
-                        {/*<tr>
-                            <td><input type="submit" value="Submit"/></td>
-                            <td><input type="hidden" name="paymentStatus"/></td>
-                        </tr>*/}
+                        <tr>
+                            <td></td>
+
+                            <td><input type="submit" className="btn btn-primary" value="Finish"
+                                       onClick={this.handleSubmit}/></td>
+                        </tr>
                         </tbody>
                     </table>
+                </div>
 
-            </div>
-        );
+
+            );
+
+        } else if ((!this.state.isAuthenticated) && this.state.routeToNextPage) {
+            return (
+                <Redirect to='/'/>
+            );
+        } else if ((!this.state.isAuthenticated) && !(this.state.routeToNextPage)) {
+            return (
+                <Redirect to='/login'/>
+            );
+        }
     }
 }
+
 export default CreateNewTicket;

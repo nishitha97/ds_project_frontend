@@ -22,18 +22,23 @@ class ConfirmCreditCard extends Component {
     //in the database
     render() {
         return (
-
-                <tr>
-                    <td>Confirm last 3 digits of credit Card Number to verify payment</td>
-                    <td><input type="text" name="creditCardNumber" value={this.props.creditCardNumber}
-                               onChange={this.handleChange}/></td>
-                    <td>CVC number</td>
-                    <td><input type="text" name="cvc" value={this.props.cvc} onChange={this.handleChange}/></td>
-                    <td> Account Holder Name</td>
-                    <td><input type="text" name="accountHolder" value={this.props.accountHolder}
-                               onChange={this.handleChange}/></td>
-                </tr>
-
+            <tbody>
+            <tr>
+                <td>Confirm last 3 digits of credit Card Number to verify payment</td>
+                <td><input type="text" name="creditCardNumber" value={this.props.creditCardNumber}
+                           onChange={this.handleChange}/></td>
+            </tr>
+            <tr>
+                <td>CVC number</td>
+                <td><input type="text" name="cvc" value={this.props.cvc} onChange={this.handleChange}/></td>
+            </tr>
+            <tr>
+                <td> Account Holder Name</td>
+                <td><input type="text" name="accountHolder" value={this.props.accountHolder}
+                           onChange={this.handleChange}/>
+                </td>
+            </tr>
+            </tbody>
         );
     }
 }

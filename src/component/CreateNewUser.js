@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import Axios from "../util/Axios";
-import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
-import HomePage from "./HomePage";
-import  { Redirect } from 'react-router-dom'
+import {BrowserRouter as Router, Link, Redirect, Route} from 'react-router-dom';
 import BookTrain from "./BookTrain";
 
 /**
@@ -183,7 +181,7 @@ class CreateNewUser extends Component {
                 </tr>
                 <tr>
                     <td> ContactNo:</td>
-                    <td> <input type="text" name="contactNo" value={contactNo} onChange={this.handleChange} /></td>
+                    <td> <input type="text" name="contactNo" value={contactNo} onChange={this.handleChange} placeholder="077..." /></td>
                     <td style={{color:"red"}}>{this.state.errors.contactNo}</td>
                 </tr>
                 <tr>

@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Axios from "../util/Axios";
-import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
+import {BrowserRouter as Router, Link, Redirect, Route} from 'react-router-dom';
 import CreateNewTicket from "./CreateNewTicket";
 import ConfirmMobile from "./ConfirmMobile";
 import ConfirmCreditCard from "./ConfirmCreditCard";
@@ -10,30 +10,22 @@ import ConfirmCreditCard from "./ConfirmCreditCard";
  *
  * @author IT17006880
  */
-
+//TODO FIX REDIRECT CREATE NEW TICKET AND LOGOUT
 class CreateNewPayment extends Component {
     constructor(props) {
         super(props);
         this.state = {
             bookingId:this.props.data.bookingId,
+            userId:'',
             creditCardPayment: false,
-            mobilePayment:false,
+            mobilePayment:true,
             paymentStatus:'NOT PAID',
-            userId:this.props.data.userId,
-            selectedTrain:this.props.data.selectedTrain,
-            numberOfTickets:this.props.data.numberOfTickets,
-            to:this.props.data.to,
-            from:this.props.data.from,
-            isAuthenticated:this.props.data.isAuthenticated,
-            username:this.props.data.username,
             mobileNumber:'',
             creditCardNumber:'',
             fields:{},
             errors:{},
             cvc:'',
-            accountHolder:''
-
-
+            accountHolder:'',
         };
 
     }
@@ -57,7 +49,6 @@ class CreateNewPayment extends Component {
             creditCardPayment:false
         });
     }
-
     //sets and updates the state value for when credit payment radio button is selected by the user
     //called when an onChange event is registered
     handleRadioCredit=(e)=>{
@@ -70,7 +61,8 @@ class CreateNewPayment extends Component {
     //called when submit button is pressed
     handleSubmit=(event)=> {
         event.preventDefault();
-        const {bookingId,creditCardPayment,mobilePayment,paymentStatus,userId,creditCardNumber,mobileNumber}=this.state;
+        const {bookingId,creditCardPayment,mobilePayment,paymentStatus,creditCardNumber,mobileNumber}=this.state;
+        const userId=this.props.userId;
 
         if(this.validateForm()) {//submit form only if user input is validated
             let value = '';
@@ -118,13 +110,13 @@ class CreateNewPayment extends Component {
                     .then((response) => {
                         console.log(response.data.contactNo)
                         value = response.data.contactNo
-                        if (value === mobileNumber) {//check if user input matches the credit mobile number
+                        if (value === mobileNumber) {//check if user input matches the mobile number
                                                       //entered when the user registered to create the account
                             console.log("creating payment")
 
                             //api call to create a new payment based on user input values
                             Axios.post('http://localhost:8081/api/v1/payments', {//payment will be made only if
-                                                                                 //user input matches the credit card number
+                                                                                 //user input matches the mobile number
                                                                                  //entered when the user registered to create the account
                                 bookingId,
                                 creditCardPayment,
@@ -196,7 +188,7 @@ class CreateNewPayment extends Component {
 
         }
 
-        if(this.state.fields.mobileNumber !== undefined){
+        else if(this.state.fields.mobileNumber !== undefined){
             mobileLength=fields["mobileNumber"].length;
 
             if (!fields["mobileNumber"]) {
@@ -218,61 +210,90 @@ class CreateNewPayment extends Component {
         return formIsValid;
     }
 
+
     render() {
-        const {bookingId,userId,mobilePayment,creditCardPayment,paymentStatus,selectedTrain,numberOfTickets,to,from,isAuthenticated,username,mobileNumber,creditCardNumber,cvc,accountHolder} = this.state;
 
-        //render based on user selected payment option
-        const PaymentContent = () => {
+            const {bookingId, userId, mobilePayment, creditCardPayment, paymentStatus, mobileNumber, creditCardNumber, cvc, accountHolder} = this.state;
+        if (this.props.isAuthenticated) {
+            //render based on user selected payment option
+            const PaymentContent = () => {
 
-            switch (this.state.creditCardPayment) {
-                case true:
-                    return <ConfirmCreditCard cvc={cvc} accoutHolder={accountHolder} creditCardNumber={creditCardNumber} validateForm={this.validateForm} handleChange={this.handleChange}/>
-                case false:
-                    return <ConfirmMobile mobileNumber={mobileNumber} validateForm={this.validateForm} handleChange={this.handleChange}/>
-                default:
-                    return ""
+                switch (this.state.creditCardPayment) {
+                    case true:
+                        return <ConfirmCreditCard cvc={cvc} accoutHolder={accountHolder}
+                                                  creditCardNumber={creditCardNumber} validateForm={this.validateForm}
+                                                  handleChange={this.handleChange}/>
+                    case false:
+                        return <ConfirmMobile mobileNumber={mobileNumber} validateForm={this.validateForm}
+                                              handleChange={this.handleChange}/>
+                    default:
+                        return ""
 
+                }
             }
-        }
-        return (
-            <div>
-                <h1>Make Payment</h1><hr className={'hr'}/>
+            return (
+                <div>
+                    <h1>Make Payment</h1>
+                    <hr className={'hr'}/>
 
-                <form onSubmit={this.handleSubmit} style={{marginLeft:"%5"}}>
-                    <table className={'table table-hover'} style={{width:1000}}>
-                        <tbody>
-                        <tr>
-                            <td> UserName:</td>
-                            <td>{this.props.data.username} </td>
-                        </tr>
-                        <tr>
-                            <td>Payable:</td>
-                            <td>Rs 100/=</td>
-                        </tr>
-                        <tr>
-                   <td>Payment Method:</td>
-                   <td><input type="radio" name="radio" value={mobilePayment} onChange={this.handleRadioMobile}/> Mobile Payment(Dialog)<br/>
-                   <input type="radio" name="radio" value={creditCardPayment} onChange={this.handleRadioCredit}/> Credit Payment
-                   </td>
-               </tr>
+                    <form onSubmit={this.handleSubmit} style={{marginLeft: "15%"}}>
+                        <table className={'table table-hover'} style={{width: 650}}>
+                            <tbody>
+                            <tr>
+                                <td> UserName:</td>
+                                <td>{this.props.username} </td>
+                            </tr>
+                            <tr>
+                                <td>Payable:</td>
+                                <td>Rs 100/=</td>
+                            </tr>
+                            <tr>
+                                <td>Payment Method:</td>
+                                <td><input type="radio" name="radio" value={mobilePayment} checked={mobilePayment}
+                                           onChange={this.handleRadioMobile}/> Mobile Payment(Dialog)<br/>
+                                    <input type="radio" name="radio" value={creditCardPayment} checked={creditCardPayment}
+                                           onChange={this.handleRadioCredit}/> Credit Payment
+                                </td>
+                            </tr>
+                            </tbody>
+                            {PaymentContent()}
+                            <tbody>
+                            <tr>
+                                <td><input type="submit" value="Confirm Payment" className="btn btn-primary"/></td>
+                                <td><input type="hidden" name="paymentStatus" value={paymentStatus}/></td>
+                                <td><input type="hidden" name="userId" value={this.props.userId}
+                                           onChange={this.handleChange}/></td>
+                                <td><input type="hidden" name="bookingId" value={this.state.bookingId}
+                                           onChange={this.handleChange}/></td>
 
-                        {PaymentContent()}
-
-                        <tr>
-                            <td><input type="submit" value="Confirm Payment" className="btn btn-primary"/></td>
-                            <td><input type="hidden" name="paymentStatus" value={paymentStatus}/></td>
-                            <td><input type="hidden" name="userId" value={this.props.data.userId} onChange={this.handleChange}/></td>
-                            <td><input type="hidden" name="bookingId" value={this.props.data.bookingId}  onChange={this.handleChange}/></td>
-
-                        </tr>
-                        </tbody>
-                    </table>
-                </form>
-                <hr className={'hr'}/><Router><div><Link id="ticket" to="/booking/payment/ticket"></Link></div><Route path='/booking/payment/ticket' render={(props) => (
-                    <CreateNewTicket {...props} data={{bookingId,userId,mobilePayment,creditCardPayment,paymentStatus,selectedTrain,numberOfTickets,to,from,isAuthenticated,username}}/>
-                )}/></Router>
-            </div>
-        );
+                            </tr>
+                         </tbody>
+                        </table>
+                    </form>
+                    <hr className={'hr'}/>
+                    <Router>
+                        <div><Link id="ticket" to="/booking/payment/ticket"></Link></div>
+                        <Route exact path='/booking/payment/ticket' render={(props) => (
+                            <CreateNewTicket {...props}
+                                             selectedTrain={this.props.data.selectedTrain}
+                                             numberOfTickets={this.props.data.numberOfTickets}
+                                             to={this.props.data.to}
+                                             from={this.props.data.from}
+                                             isAuthenticated={this.props.isAuthenticated}
+                                             username={this.props.username}
+                                             data={{
+                                                 bookingId,
+                                                 userId,
+                                                 mobilePayment,
+                                                 creditCardPayment,
+                                                 paymentStatus
+                                             }}/>
+                        )}/></Router>
+                </div>
+            );
+        }return(
+            <Redirect to='/login'/>
+        )
     }
 }
 

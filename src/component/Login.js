@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import Axios from "../util/Axios";
-import { Route, Link, BrowserRouter as Router } from 'react-router-dom';
+import {BrowserRouter as Router, Link, Redirect, Route} from 'react-router-dom';
 import BookTrain from "./BookTrain";
 
 
@@ -87,9 +87,10 @@ class Login extends Component {
                             userId: response.data.id
                         })
                         alert("Login Successful ! ")
-                        const imageurl = document.getElementById('link');//renders next component(Book Train) by clicking on the Link
+                         const url = document.getElementById('link');//renders next component(Book Train) by clicking on the Link
                         // since Login process is now completed
-                        imageurl.click();
+                        url.click();
+
 
                     }
                 }).catch((err) => {
@@ -97,6 +98,7 @@ class Login extends Component {
                                                                                                    //usually a 401 status code
             });
         }
+
     }
 
 
@@ -125,7 +127,7 @@ class Login extends Component {
                     </tbody>
                 </table>
                 </form>
-                <Router><div><Link id="link" to="/book"></Link></div><Route path='/book' render={(props) => (
+                <Router><div><Link id="link" to="/booking"></Link></div><Route exact path='/booking' render={(props) => (
                     <BookTrain {...props} data={{username,isAuthenticated,userId}}/>
                 )}/></Router>
             </div>
