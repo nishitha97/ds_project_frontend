@@ -65,7 +65,7 @@ class CreateNewTicket extends Component {
                         </tr>
                         <tr>
                             <td>Amount Paid</td>
-                            <td>{this.props.price*this.props.numberOfTickets}</td>
+                            <td>Rs. {this.props.price*this.props.numberOfTickets}</td>
                         </tr>
                         <tr>
                             <td>Date</td>

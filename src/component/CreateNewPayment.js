@@ -259,7 +259,7 @@ class CreateNewPayment extends Component {
                             </tr>
                             <tr>
                                 <td>Payable:</td>
-                                <td>Rs {this.props.data.numberOfTickets*this.props.data.price}</td>
+                                <td>Rs. {this.props.data.numberOfTickets*this.props.data.price}</td>
                             </tr>
                             <tr>
                                 <td>Payment Method:</td>

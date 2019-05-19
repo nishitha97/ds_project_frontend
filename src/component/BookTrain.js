@@ -183,7 +183,7 @@ class BookTrain extends Component {
                                     {this.state.trainsDetails.map((trainDetail, index) => {
                                         return (
                                             <option key={index} value={`Train : ${trainDetail.train} Arrival Time: ${trainDetail.arrivalTime }  Departure Time : ${trainDetail.departureTime} Platform : ${trainDetail.platform} Price per Ticket: ${trainDetail.price}`}>
-                                                {`Train : ${trainDetail.train} Arrival Time: ${trainDetail.arrivalTime }Departure Time : ${trainDetail.departureTime}Platform : ${trainDetail.platform}`}
+                                                {`Train : ${trainDetail.train} Arrival Time: ${trainDetail.arrivalTime } Departure Time : ${trainDetail.departureTime} Platform : ${trainDetail.platform}`}
                                             </option>
                                         );
                                     })}
@@ -201,7 +201,7 @@ class BookTrain extends Component {
                             </tr>
                             <tr>
                                 <td> Payable price:</td>
-                                <td>{this.setAmount()}</td>
+                                <td>Rs.{this.setAmount()}</td>
                             </tr>
                             <tr>
                                 <td> To:</td>
