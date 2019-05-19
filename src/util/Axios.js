@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 /**
- * common class for to handle all axios requests
+ * common utility class for to handle all axios requests
  *
  * @author IT17006880
  */

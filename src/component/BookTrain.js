@@ -13,17 +13,16 @@ class BookTrain extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            userId: '',
+            userId: this.props.data.userId,
             selectedTrain: '',
             numberOfTickets: '',
             to: '',
             from: '',
             bookingId: '',
             trainsDetails: [],
+            price:'',
             fields: {},
-            errors: {}
-
-
+            errors: {},
         };
 
     }
@@ -41,6 +40,20 @@ class BookTrain extends Component {
 
     }
 
+    handleChangeTicketNumber = (e) => {
+
+        let fields = this.state.fields;
+        fields[e.target.name] = e.target.value;
+
+        this.setState({
+            fields,
+            [e.target.name]: e.target.value
+        },()=>{
+            this.setAmount();
+        });
+
+    }
+
     handleChangeSelectTo = (e) => {
         this.setState({to: e.target.value});
     }
@@ -50,7 +63,13 @@ class BookTrain extends Component {
     }
 
     handleChangeSelectTrain = (e) => {
-        this.setState({selectedTrain: e.target.value});
+        var str = e.target.value;
+        var n = str.lastIndexOf(': ');
+        var result = str.substring(n + 1);
+        this.setState({
+            selectedTrain: e.target.value,
+            price:result
+        });
     }
 
 
@@ -89,6 +108,7 @@ class BookTrain extends Component {
                     arrivalTime: train.arrivalTime,
                     departureTime: train.departureTime,
                     platform: train.platform,
+                    price:train.price
 
                 }))
             )
@@ -96,7 +116,7 @@ class BookTrain extends Component {
                 this.setState({
                     trainsDetails: trainDetails,//state is updated
                     //setting default value for drop down select elements
-                    selectedTrain: "Train: " + trainDetails[0].train + " Arrival Time: " + trainDetails[0].arrivalTime + " Departure Time: " + trainDetails[0].departureTime + " Platform: " + trainDetails[0].platform,
+                    selectedTrain: "Train: " + trainDetails[0].train + " Arrival Time: " + trainDetails[0].arrivalTime + " Departure Time: " + trainDetails[0].departureTime + " Platform: " + trainDetails[0].platform + " Price per Ticket: "+ trainDetails[0].price,
                     to: trainDetails[0].toDest,
                     from: trainDetails[0].fromDest
 
@@ -127,7 +147,7 @@ class BookTrain extends Component {
                     this.setState({
                         bookingId: value//update booking id state with response from newly created booking object id
                     })
-                    alert("Your Booking is Successful")
+                    alert("Your Booking is Successful");
                     const url = document.getElementById('payment');//renders next component(CreateNewPayment) by clicking on the Link
                                                                    // since booking a train is now completed
                     url.click();
@@ -136,15 +156,20 @@ class BookTrain extends Component {
         }
     }
 
-    render() {
+    setAmount=()=>{
+        const{numberOfTickets,price}=this.state;
+        let total= price*numberOfTickets;
+        return total;
+    }
 
+    render() {
         if (this.props.data.isAuthenticated) {
-            const {selectedTrain, numberOfTickets, to, from, bookingId} = this.state;
+            const {selectedTrain, numberOfTickets, to, from,bookingId,price} = this.state;
             return (
                 <div>
                     <h1>Book a train</h1>
                     <hr className={'hr'}/>
-                    <form onSubmit={this.handleSubmit} style={{marginLeft: "5%"}}>
+                    <form onSubmit={this.handleSubmit} style={{marginLeft:"5%"}}>
                         <table className={'table table-hover'} style={{width: 800}}>
                             <tbody>
                             <tr>
@@ -156,26 +181,27 @@ class BookTrain extends Component {
                                 <td> Select Train:</td>
                                 <td><select value={selectedTrain} onChange={this.handleChangeSelectTrain}>
                                     {this.state.trainsDetails.map((trainDetail, index) => {
-
                                         return (
-                                            <option key={index}
-                                                    value={`Train : ${trainDetail.train} Arrival Time: ${trainDetail.arrivalTime }
-                                                Departure Time : ${trainDetail.departureTime}
-                                                Platform : ${trainDetail.platform}`}>
-
-                                                {`Train : ${trainDetail.train} Arrival Time: ${trainDetail.arrivalTime }
-                                                Departure Time : ${trainDetail.departureTime}
-                                                Platform : ${trainDetail.platform}`}
-
+                                            <option key={index} value={`Train : ${trainDetail.train} Arrival Time: ${trainDetail.arrivalTime }  Departure Time : ${trainDetail.departureTime} Platform : ${trainDetail.platform} Price per Ticket: ${trainDetail.price}`}>
+                                                {`Train : ${trainDetail.train} Arrival Time: ${trainDetail.arrivalTime }Departure Time : ${trainDetail.departureTime}Platform : ${trainDetail.platform}`}
                                             </option>
                                         );
                                     })}
-                                </select></td>
+                                </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td> Price Per Ticket</td>
+                                <td> Rs. {price}</td>
                             </tr>
                             <tr>
                                 <td> Enter number Of Tickets:</td>
                                 <td><input type="number" name="numberOfTickets" value={numberOfTickets}
-                                           onChange={this.handleChange}/></td>
+                                           onChange={this.handleChangeTicketNumber}/></td>
+                            </tr>
+                            <tr>
+                                <td> Payable price:</td>
+                                <td>{this.setAmount()}</td>
                             </tr>
                             <tr>
                                 <td> To:</td>
@@ -223,7 +249,7 @@ class BookTrain extends Component {
                             <CreateNewPayment {...props} isAuthenticated={this.props.data.isAuthenticated}
                                               username={this.props.data.username}
                                               userId={this.props.data.userId}
-                                              data={{selectedTrain, numberOfTickets, to, from, bookingId}}/>
+                                              data={{selectedTrain, numberOfTickets, to, from, bookingId,price}}/>
                         )}/>
                     </Router>
                 </div>

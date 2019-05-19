@@ -48,7 +48,6 @@ class CreateNewUser extends Component {
             //api call to create a new user from given user inputs
             Axios.post('http://localhost:8081/api/v1/users', {username, password, email, creditCardNo, contactNo, nic})
                 .then(response => {
-                    console.log(response);
                     this.setState({//update isAuthenticated,username and userId states with response from newly user booking object
                         isAuthenticated: true,
                         username: response.data.username,

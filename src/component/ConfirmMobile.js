@@ -22,6 +22,11 @@ class ConfirmMobile extends Component {
                 <td><input type="text" name="mobileNumber" value={this.props.mobileNumber}
                            onChange={this.handleChange}/></td>
             </tr>
+            <tr>
+                <td>Enter 4 digit pin </td>
+                <td><input type="number" name="pinNumber" value={this.props.pinNumber}
+                           onChange={this.handleChange}/></td>
+            </tr>
             </tbody>
         );
     }

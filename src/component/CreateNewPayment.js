@@ -16,7 +16,7 @@ class CreateNewPayment extends Component {
         super(props);
         this.state = {
             bookingId:this.props.data.bookingId,
-            userId:'',
+            userId:this.props.userId,
             creditCardPayment: false,
             mobilePayment:true,
             paymentStatus:'NOT PAID',
@@ -25,6 +25,7 @@ class CreateNewPayment extends Component {
             fields:{},
             errors:{},
             cvc:'',
+            pinNumber:'',
             accountHolder:'',
         };
 
@@ -70,11 +71,9 @@ class CreateNewPayment extends Component {
             if (creditCardNumber !== '') {//check if credit card number is not empty
                 Axios.get('http://localhost:8081/api/v1/users/' + userId)
                     .then((response) => {
-                        console.log(response.data.creditCardNo);
                         value = response.data.creditCardNo;//get credit cardNo(last 3 numbers) from response
                         if (value === creditCardNumber) {//check if user input matches the credit card number
                                                          //entered when the user registered to create the account
-                            console.log("creating payment");
                             //api call to create a new payment based on user input values
 
                             Axios.post('http://localhost:8081/api/v1/payments', {//payment will be made only if
@@ -87,7 +86,6 @@ class CreateNewPayment extends Component {
                                 userId
                             })
                                 .then(response => {
-                                    console.log(response);
                                     alert("Your Payment is successful ! ")
                                     this.setState({
                                         paymentStatus: 'PAID'
@@ -108,11 +106,9 @@ class CreateNewPayment extends Component {
             } else if (mobileNumber !== '') {//check if mobile number is not empty
                 Axios.get('http://localhost:8081/api/v1/users/' + userId)
                     .then((response) => {
-                        console.log(response.data.contactNo)
                         value = response.data.contactNo
                         if (value === mobileNumber) {//check if user input matches the mobile number
                                                       //entered when the user registered to create the account
-                            console.log("creating payment")
 
                             //api call to create a new payment based on user input values
                             Axios.post('http://localhost:8081/api/v1/payments', {//payment will be made only if
@@ -125,7 +121,6 @@ class CreateNewPayment extends Component {
                                 userId
                             })
                                 .then(response => {
-                                    console.log(response);
                                     alert("Your Payment is successful ! ")
                                     this.setState({
                                         paymentStatus: 'PAID'
@@ -156,13 +151,14 @@ class CreateNewPayment extends Component {
         let cvcLength='';
         let creditCardLength='';
         let mobileLength='';
+        let pinLength='';
 
         if(this.state.fields.cvc !== undefined) {
-             cvcLength = fields["cvc"].length;
+            cvcLength = fields["cvc"].length;
 
             if (!fields["cvc"]) {
                 formIsValid = false;
-                alert("Please Enter a number of only 3 characters");
+                alert("Please Enter a number of only 3 digits");
             }
             if (typeof fields["cvc"] !== "undefined") {
                 if (!fields["cvc"].match(phone) || cvcLength>3) {
@@ -172,6 +168,23 @@ class CreateNewPayment extends Component {
             }
 
         }
+
+        if(this.state.fields.pinNumber !== undefined) {
+            pinLength = fields["pinNumber"].length;
+
+            if (!fields["pinNumber"]) {
+                formIsValid = false;
+                alert("Please Enter a number of only 4 digits");
+            }
+            if (typeof fields["pinNumber"] !== "undefined") {
+                if (!fields["pinNumber"].match(phone) || pinLength>4) {
+                    formIsValid = false;
+                    alert("Please Enter a valid 4 digit pin number");
+                }
+            }
+
+        }
+
 
         if(this.state.fields.creditCardNumber !== undefined) {
              creditCardLength = fields["creditCardNumber"].length;
@@ -213,7 +226,7 @@ class CreateNewPayment extends Component {
 
     render() {
 
-            const {bookingId, userId, mobilePayment, creditCardPayment, paymentStatus, mobileNumber, creditCardNumber, cvc, accountHolder} = this.state;
+            const {bookingId, userId, mobilePayment, creditCardPayment, paymentStatus, mobileNumber, creditCardNumber, cvc,pinNumber,accountHolder} = this.state;
         if (this.props.isAuthenticated) {
             //render based on user selected payment option
             const PaymentContent = () => {
@@ -225,6 +238,7 @@ class CreateNewPayment extends Component {
                                                   handleChange={this.handleChange}/>
                     case false:
                         return <ConfirmMobile mobileNumber={mobileNumber} validateForm={this.validateForm}
+                                              pinNumber={pinNumber}
                                               handleChange={this.handleChange}/>
                     default:
                         return ""
@@ -245,7 +259,7 @@ class CreateNewPayment extends Component {
                             </tr>
                             <tr>
                                 <td>Payable:</td>
-                                <td>Rs 100/=</td>
+                                <td>Rs {this.props.data.numberOfTickets*this.props.data.price}</td>
                             </tr>
                             <tr>
                                 <td>Payment Method:</td>
@@ -277,6 +291,7 @@ class CreateNewPayment extends Component {
                             <CreateNewTicket {...props}
                                              selectedTrain={this.props.data.selectedTrain}
                                              numberOfTickets={this.props.data.numberOfTickets}
+                                             price={this.props.data.price}
                                              to={this.props.data.to}
                                              from={this.props.data.from}
                                              isAuthenticated={this.props.isAuthenticated}

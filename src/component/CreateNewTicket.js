@@ -41,7 +41,7 @@ class CreateNewTicket extends Component {
                 <div>
                     <h1>Your ticket</h1>
                     <hr className={'hr'}/>
-                    <table className={'table table-hover'} style={{width: 800, marginLeft: "5%"}}>
+                    <table className={'table table-hover'} style={{width: 850}}>
                         <tbody>
                         <tr>
                             <td>UserName</td>
@@ -61,7 +61,11 @@ class CreateNewTicket extends Component {
                         </tr>
                         <tr>
                             <td>Train</td>
-                            <td>{this.props.selectedTrain}</td>
+                            <td style={{fontSize:12}}>{this.props.selectedTrain}</td>
+                        </tr>
+                        <tr>
+                            <td>Amount Paid</td>
+                            <td>{this.props.price*this.props.numberOfTickets}</td>
                         </tr>
                         <tr>
                             <td>Date</td>
@@ -70,8 +74,8 @@ class CreateNewTicket extends Component {
                         <tr>
                             <td></td>
 
-                            <td><input type="submit" className="btn btn-primary" value="Finish"
-                                       onClick={this.handleSubmit}/></td>
+                            {/*<td><input type="submit" className="btn btn-primary" value="Finish"
+                                       onClick={this.handleSubmit}/></td>*/}
                         </tr>
                         </tbody>
                     </table>

@@ -77,10 +77,7 @@ class Login extends Component {
             Axios.post('http://localhost:8081/api/v1/session/authenticate', {username, password})//posts user credentials entered
                                                                                                  // to validate login
                 .then(response => {
-                    console.log(response);
-                    console.log(response.data.id)
                     if (response.status == 200) {//check if authenticated based on response code
-                        console.log(response.status);
                         this.setState({
                             isAuthenticated: true,
                             username: response.data.username,
