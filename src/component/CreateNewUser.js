@@ -126,7 +126,7 @@ class CreateNewUser extends Component {
         if (typeof fields["creditCardNo"] !== "undefined") {
             if (!fields["creditCardNo"].match(/^[0-9]{16}$/)) {
                 formIsValid = false;
-                errors["creditCardNo"]="*Please enter a valid credit card number"
+                errors["creditCardNo"]="*Please enter a valid credit card number of 16 digits"
             }
         }
 
